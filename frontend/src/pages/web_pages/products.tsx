@@ -187,7 +187,7 @@ export default function WebSite() {
 
         <PricingSection
           projectName={'snuglife'}
-          withBg={0}
+          withBg={1}
           features={pricing_features}
           description={description}
         />

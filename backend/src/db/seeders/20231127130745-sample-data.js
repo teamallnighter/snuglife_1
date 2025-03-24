@@ -43,26 +43,6 @@ const CustomersData = [
 
     // type code here for "relation_many" field
   },
-
-  {
-    first_name: 'Bob',
-
-    last_name: 'Brown',
-
-    email: 'bob.brown@example.com',
-
-    // type code here for "relation_many" field
-  },
-
-  {
-    first_name: 'Charlie',
-
-    last_name: 'Davis',
-
-    email: 'charlie.davis@example.com',
-
-    // type code here for "relation_many" field
-  },
 ];
 
 const OrderItemsData = [
@@ -89,22 +69,6 @@ const OrderItemsData = [
 
     quantity: 3,
   },
-
-  {
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-
-    quantity: 1,
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-
-    quantity: 2,
-  },
 ];
 
 const OrdersData = [
@@ -113,7 +77,7 @@ const OrdersData = [
 
     order_date: new Date('2023-10-01T10:00:00Z'),
 
-    status: 'Shipped',
+    status: 'Cancelled',
 
     // type code here for "relation_many" field
   },
@@ -123,7 +87,7 @@ const OrdersData = [
 
     order_date: new Date('2023-10-02T11:30:00Z'),
 
-    status: 'Cancelled',
+    status: 'Delivered',
 
     // type code here for "relation_many" field
   },
@@ -132,26 +96,6 @@ const OrdersData = [
     // type code here for "relation_one" field
 
     order_date: new Date('2023-10-03T14:45:00Z'),
-
-    status: 'Cancelled',
-
-    // type code here for "relation_many" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    order_date: new Date('2023-10-04T09:15:00Z'),
-
-    status: 'Shipped',
-
-    // type code here for "relation_many" field
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    order_date: new Date('2023-10-05T16:00:00Z'),
 
     status: 'Cancelled',
 
@@ -167,7 +111,7 @@ const ProductsData = [
 
     price: 19.99,
 
-    category: 'Women',
+    category: 'Kids',
 
     // type code here for "relation_many" field
 
@@ -181,7 +125,7 @@ const ProductsData = [
 
     price: 49.99,
 
-    category: 'Men',
+    category: 'Kids',
 
     // type code here for "relation_many" field
 
@@ -194,34 +138,6 @@ const ProductsData = [
     description: 'Comfortable red hoodie with a front pocket.',
 
     price: 29.99,
-
-    category: 'Men',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_many" field
-  },
-
-  {
-    name: 'Black Leather Jacket',
-
-    description: 'Premium black leather jacket with a modern cut.',
-
-    price: 199.99,
-
-    category: 'Men',
-
-    // type code here for "relation_many" field
-
-    // type code here for "relation_many" field
-  },
-
-  {
-    name: 'Green Summer Dress',
-
-    description: 'Light and breezy green dress perfect for summer.',
-
-    price: 39.99,
 
     category: 'Women',
 
@@ -261,26 +177,6 @@ const ReviewsData = [
 
     comment: 'Color faded after washing.',
   },
-
-  {
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-
-    rating: 5,
-
-    comment: 'Love this jacket!',
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    // type code here for "relation_one" field
-
-    rating: 4,
-
-    comment: 'Perfect for summer days.',
-  },
 ];
 
 const VariationsData = [
@@ -312,26 +208,6 @@ const VariationsData = [
     color: 'Red',
 
     stock: 20,
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    size: 'XL',
-
-    color: 'Black',
-
-    stock: 10,
-  },
-
-  {
-    // type code here for "relation_one" field
-
-    size: 'M',
-
-    color: 'Green',
-
-    stock: 40,
   },
 ];
 
@@ -372,28 +248,6 @@ async function associateOrderItemWithOrder() {
   if (OrderItem2?.setOrder) {
     await OrderItem2.setOrder(relatedOrder2);
   }
-
-  const relatedOrder3 = await Orders.findOne({
-    offset: Math.floor(Math.random() * (await Orders.count())),
-  });
-  const OrderItem3 = await OrderItems.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (OrderItem3?.setOrder) {
-    await OrderItem3.setOrder(relatedOrder3);
-  }
-
-  const relatedOrder4 = await Orders.findOne({
-    offset: Math.floor(Math.random() * (await Orders.count())),
-  });
-  const OrderItem4 = await OrderItems.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (OrderItem4?.setOrder) {
-    await OrderItem4.setOrder(relatedOrder4);
-  }
 }
 
 async function associateOrderItemWithProduct() {
@@ -429,28 +283,6 @@ async function associateOrderItemWithProduct() {
   if (OrderItem2?.setProduct) {
     await OrderItem2.setProduct(relatedProduct2);
   }
-
-  const relatedProduct3 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const OrderItem3 = await OrderItems.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (OrderItem3?.setProduct) {
-    await OrderItem3.setProduct(relatedProduct3);
-  }
-
-  const relatedProduct4 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const OrderItem4 = await OrderItems.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (OrderItem4?.setProduct) {
-    await OrderItem4.setProduct(relatedProduct4);
-  }
 }
 
 async function associateOrderWithCustomer() {
@@ -485,28 +317,6 @@ async function associateOrderWithCustomer() {
   });
   if (Order2?.setCustomer) {
     await Order2.setCustomer(relatedCustomer2);
-  }
-
-  const relatedCustomer3 = await Customers.findOne({
-    offset: Math.floor(Math.random() * (await Customers.count())),
-  });
-  const Order3 = await Orders.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Order3?.setCustomer) {
-    await Order3.setCustomer(relatedCustomer3);
-  }
-
-  const relatedCustomer4 = await Customers.findOne({
-    offset: Math.floor(Math.random() * (await Customers.count())),
-  });
-  const Order4 = await Orders.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Order4?.setCustomer) {
-    await Order4.setCustomer(relatedCustomer4);
   }
 }
 
@@ -549,28 +359,6 @@ async function associateReviewWithProduct() {
   if (Review2?.setProduct) {
     await Review2.setProduct(relatedProduct2);
   }
-
-  const relatedProduct3 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const Review3 = await Reviews.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Review3?.setProduct) {
-    await Review3.setProduct(relatedProduct3);
-  }
-
-  const relatedProduct4 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const Review4 = await Reviews.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Review4?.setProduct) {
-    await Review4.setProduct(relatedProduct4);
-  }
 }
 
 async function associateReviewWithCustomer() {
@@ -606,28 +394,6 @@ async function associateReviewWithCustomer() {
   if (Review2?.setCustomer) {
     await Review2.setCustomer(relatedCustomer2);
   }
-
-  const relatedCustomer3 = await Customers.findOne({
-    offset: Math.floor(Math.random() * (await Customers.count())),
-  });
-  const Review3 = await Reviews.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Review3?.setCustomer) {
-    await Review3.setCustomer(relatedCustomer3);
-  }
-
-  const relatedCustomer4 = await Customers.findOne({
-    offset: Math.floor(Math.random() * (await Customers.count())),
-  });
-  const Review4 = await Reviews.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Review4?.setCustomer) {
-    await Review4.setCustomer(relatedCustomer4);
-  }
 }
 
 async function associateVariationWithProduct() {
@@ -662,28 +428,6 @@ async function associateVariationWithProduct() {
   });
   if (Variation2?.setProduct) {
     await Variation2.setProduct(relatedProduct2);
-  }
-
-  const relatedProduct3 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const Variation3 = await Variations.findOne({
-    order: [['id', 'ASC']],
-    offset: 3,
-  });
-  if (Variation3?.setProduct) {
-    await Variation3.setProduct(relatedProduct3);
-  }
-
-  const relatedProduct4 = await Products.findOne({
-    offset: Math.floor(Math.random() * (await Products.count())),
-  });
-  const Variation4 = await Variations.findOne({
-    order: [['id', 'ASC']],
-    offset: 4,
-  });
-  if (Variation4?.setProduct) {
-    await Variation4.setProduct(relatedProduct4);
   }
 }
 
